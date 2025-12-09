@@ -34,3 +34,15 @@ CREATE TABLE IF NOT EXISTS stats (
   rating_points INT DEFAULT 0,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS blockblast_scores (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  score INT NOT NULL,
+  max_combo INT NOT NULL,
+  played_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX(user_id),
+  INDEX(score)
+);
